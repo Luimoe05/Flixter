@@ -1,0 +1,76 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* NAVBAR */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* TOP RIGHT BOTTOM LEFT*/
+  padding: 35px 40px 35px 40px;
+
+  /* HELPER TO SEE */
+  background-color: rgb(154, 154, 154);
+}
+
+.title-header {
+  /* outline: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* RIGHT SIDE OF NAVBAR */
+
+.right-side-navbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: relative;
+}
+
+.search-bar {
+  padding: 10px;
+  padding-right: 150px;
+  font-size: 1em;
+  border-radius: 15px;
+  border: none;
+}
+
+.search-bar:focus {
+  border: none;
+  outline: none;
+}
+
+.material-symbols-outlined {
+  /* padding: 15px 25px 15px 25px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 0.9em;
+  font-weight: 700; */
+  border-radius: 20px;
+  border: none;
+  font-size: 1em;
+  transition: 0.2s ease-in-out;
+  position: absolute;
+  right: 3%;
+  top: 10%;
+  padding: 5px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.material-symbols-outlined:hover {
+  cursor: pointer;
+  background-color: rgb(154, 154, 154);
+  color: rgb(255, 255, 255);
+  outline: none;
+  user-select: none;
+}
