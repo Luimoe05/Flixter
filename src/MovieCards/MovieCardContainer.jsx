@@ -3,11 +3,12 @@ import MovieCard from "./MovieCard";
 import "./MovieCard.css";
 import axios from "axios";
 
-export default function MovieCardContainer() {
+export default function MovieCardContainer({ searchData }) {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
+  // console.log(searchData);
   //API KEY
   const apikey = import.meta.env.VITE_API_KEY;
 
@@ -15,8 +16,14 @@ export default function MovieCardContainer() {
     fetchList(currentPage);
   }, []);
 
+  useEffect(() => {
+    if (searchData !== "") {
+      searchMovies(searchData);
+    }
+  }, [searchData]);
+
+  //Renders the initial set of movie
   const fetchList = async (page) => {
-    console.log("Ran x", currentPage);
     //start loading
     setLoading(true);
     try {
@@ -35,6 +42,23 @@ export default function MovieCardContainer() {
     }
 
     //end loading
+    setLoading(false);
+  };
+
+  //render the movies based on the search inputed
+  const searchMovies = async (query) => {
+    setLoading(true);
+    try {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${apikey}&query=${query}&language=en-US&page=1`
+      );
+
+      console.log("Searched Movies Fetched");
+      setMovies(data.results);
+      setCurrentPage(page);
+    } catch (err) {
+      console.log("Caught error: ", err);
+    }
     setLoading(false);
   };
 

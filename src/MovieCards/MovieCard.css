@@ -50,6 +50,10 @@
   height: 100%;
 }
 
+.movie-title {
+  font-size: 1.4em;
+}
+
 .loadmore-container {
   display: flex;
   /* outline: 1px solid red; */
