@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  /* border: none; */
 }
 
 /* NAVBAR */
@@ -28,6 +29,12 @@
 /* RIGHT SIDE OF NAVBAR */
 
 .right-side-navbar {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.search-side-navbar {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -61,7 +68,7 @@
   transition: 0.2s ease-in-out;
   position: absolute;
   right: 3%;
-  top: 10%;
+  top: 17%;
   padding: 5px;
   font-weight: 500;
   font-size: 20px;
@@ -69,8 +76,22 @@
 
 .material-symbols-outlined:hover {
   cursor: pointer;
-  background-color: rgb(154, 154, 154);
+  /* background-color: rgb(154, 154, 154);
   color: rgb(255, 255, 255);
-  outline: none;
+  outline: none; */
   user-select: none;
+}
+
+.clear-btn {
+  padding: 15px 35px 15px 35px;
+  font-size: 0.8em;
+  font-weight: 700;
+  border-radius: 5px;
+  border: 1px solid grey;
+  transition: 0.2s ease-in-out;
+}
+
+.clear-btn:hover {
+  cursor: pointer;
+  background-color: rgb(91, 192, 250);
 }
