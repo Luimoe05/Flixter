@@ -3,21 +3,31 @@ import MovieCard from "./MovieCard";
 import "./MovieCard.css";
 import axios from "axios";
 
-export default function MovieCardContainer({ searchData, clearData }) {
+export default function MovieCardContainer({
+  searchData,
+  clearData,
+  sortData,
+}) {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [currentSortOption, setCurrentSortOption] = useState("default-choice");
 
   // console.log(searchData);
   //API KEY
   const apikey = import.meta.env.VITE_API_KEY;
+
+  //this is working correctly
+  //The data is being passed through the navbar and app to here
+  console.log(sortData);
 
   //initial fetch list
   useEffect(() => {
     fetchList(1);
   }, []);
 
+  //handles the searching part of the website
   useEffect(() => {
     if (searchData !== "") {
       setIsSearching(true);
@@ -29,6 +39,7 @@ export default function MovieCardContainer({ searchData, clearData }) {
     }
   }, [searchData]);
 
+  //handles the clear data button
   useEffect(() => {
     if (clearData === true) {
       setIsSearching(false);
@@ -37,8 +48,13 @@ export default function MovieCardContainer({ searchData, clearData }) {
     }
   }, [clearData]);
 
+  //Handles the sort data part of the website
+  useEffect(() => {
+    applySort(sortData, 1);
+  }, [sortData]);
+
   //Renders the initial set of movie
-  const fetchList = async (page) => {
+  const fetchList = async (page, sortOption) => {
     //start loading
     setLoading(true);
     try {
@@ -47,9 +63,12 @@ export default function MovieCardContainer({ searchData, clearData }) {
       );
 
       if (page === 1) {
-        setMovies(data.results);
+        setMovies(helperApplySort(data.results, currentSortOption));
       } else {
-        setMovies((currMovies) => [...currMovies, ...data.results]);
+        //COMBINES BUT DOES NOT SORT
+        const combinedMovies = [...movies, ...data.results];
+        const sortedMovies = helperApplySort(combinedMovies, currentSortOption);
+        setMovies(sortedMovies);
       }
       // console.log(data.results);
     } catch (err) {
@@ -71,10 +90,12 @@ export default function MovieCardContainer({ searchData, clearData }) {
       console.log("Searched Movies Fetched");
 
       if (page === 1) {
-        setMovies(data.results);
+        setMovies(helperApplySort(data.results, currentSortOption));
         setCurrentPage(1);
       } else {
-        setMovies((currentMovies) => [...currentMovies, ...data.results]);
+        const combinedMovies = [...movies, ...data.results];
+        const sortedMovies = helperApplySort(combinedMovies, currentSortOption);
+        setMovies(sortedMovies);
       }
     } catch (err) {
       console.log("Caught error: ", err);
@@ -90,7 +111,33 @@ export default function MovieCardContainer({ searchData, clearData }) {
       searchMovies(searchData, nextPageNum);
     } else {
       fetchList(nextPageNum);
+      applySort(dropDownStatus);
     }
+  };
+
+  const applySort = (dropDownStatus) => {
+    setCurrentSortOption(dropDownStatus);
+
+    const sortedMovies = helperApplySort(movies, dropDownStatus);
+
+    setMovies(sortedMovies);
+  };
+
+  const helperApplySort = (nonSortedArray, dropDownStatus) => {
+    let sortedMovies = [...nonSortedArray];
+
+    if (dropDownStatus === "title") {
+      sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (dropDownStatus === "release-date") {
+      sortedMovies.sort(
+        //This is sorting the array by release dates
+        (a, b) => new Date(a.release_date) - new Date(b.release_date)
+      );
+    } else if (dropDownStatus === "vote-average") {
+      sortedMovies.sort((a, b) => b.vote_average - a.vote_average);
+    }
+
+    return sortedMovies;
   };
 
   return (

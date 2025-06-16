@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 
-export default function Navbar({ onDataSend, onDataClear }) {
+export default function Navbar({ onDataSend, onDataClear, onSort }) {
   const [search, setSearch] = useState("");
-  const [clear, setClear] = useState(false);
+  // const [clear, setClear] = useState(false);
 
   const handleSearch = () => {
     onDataSend(search);
@@ -13,8 +13,6 @@ export default function Navbar({ onDataSend, onDataClear }) {
     setSearch("");
     onDataSend("");
     onDataClear(true);
-
-    // document.querySelector(".search-bar").value = "";
   };
 
   const handleEnterKey = (event) => {
@@ -22,6 +20,11 @@ export default function Navbar({ onDataSend, onDataClear }) {
       event.preventDefault();
       handleSearch();
     }
+  };
+
+  const handleSort = (e) => {
+    const selectedTarget = e.target.value;
+    onSort(selectedTarget);
   };
 
   return (
@@ -48,6 +51,13 @@ export default function Navbar({ onDataSend, onDataClear }) {
           <button className="clear-btn" onClick={handleClear}>
             Clear
           </button>
+
+          <select className="filter-menu" onChange={handleSort}>
+            <option value="default-choice">Sort By</option>
+            <option value="title">Title</option>
+            <option value="release-date">Release Date</option>
+            <option value="vote-average">Vote Average</option>
+          </select>
         </div>
       </div>
     </>

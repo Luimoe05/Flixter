@@ -26,12 +26,12 @@ Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
     - [x] Text input field
     - [x] Submit/Search button
     - [] Clear button
-  - [ ] Movies with a title containing the search query in the text input field are displayed in a grid view when the user either:
-    - [ ] Presses the Enter key
+  - [x] Movies with a title containing the search query in the text input field are displayed in a grid view when the user either:
+    - [x] Presses the Enter key
     - [x] Clicks the Submit/Search button
-  - [ ] Users can click the Clear button. When clicked:
-    - [ ] All text in the text input field is deleted
-    - [ ] The most recent search results are cleared from the text input field and the grid view and all current movies are displayed in a grid view
+  - [x] Users can click the Clear button. When clicked:
+    - [x] All text in the text input field is deleted
+    - [x] The most recent search results are cleared from the text input field and the grid view and all current movies are displayed in a grid view
 - [ ] **Design Features**
   - [ ] Website implements all of the following accessibility features:
     - [ ] Semantic HTML
