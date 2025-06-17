@@ -2,7 +2,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  /* border: none; */
+}
+
+body {
+  margin-top: 120px;
 }
 
 /* NAVBAR */
@@ -14,13 +17,21 @@
   flex-wrap: wrap;
   /* TOP RIGHT BOTTOM LEFT*/
   padding: 35px 40px 35px 40px;
+  background-color: rgb(37, 37, 37);
 
-  /* HELPER TO SEE */
-  background-color: rgb(154, 154, 154);
+  /* STATIC NAVBAR */
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .title-header {
   /* outline: 1px solid red; */
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,11 +59,20 @@
   font-size: 1em;
   border-radius: 15px;
   border: none;
+  background-color: rgb(57, 57, 57);
+  transition: 0.1s ease-in-out;
+  color: white;
+}
+
+.search-bar:hover {
+  background-color: rgb(83, 83, 83);
+  border: none;
 }
 
 .search-bar:focus {
   border: none;
-  outline: none;
+  outline: 2px solid rgb(57, 57, 116);
+  background-color: rgb(83, 83, 83);
 }
 
 .material-symbols-outlined {
@@ -72,6 +92,7 @@
   padding: 5px;
   font-weight: 500;
   font-size: 20px;
+  color: white;
 }
 
 .material-symbols-outlined:hover {
@@ -87,14 +108,17 @@
   font-size: 0.8em;
   font-weight: 700;
   border-radius: 5px;
-  border: 1px solid grey;
+  border: none;
   transition: 0.2s ease-in-out;
-  background-color: white;
+  background-color: rgb(57, 57, 57);
+  color: white;
 }
 
 .clear-btn:hover {
   cursor: pointer;
-  background-color: rgb(91, 192, 250);
+  background-color: rgb(255, 255, 255);
+  color: black;
+  /* outline: 1px solid rgb(78, 78, 152); */
 }
 
 .filter-menu {
@@ -103,9 +127,13 @@
   font-size: 0.8em;
   padding: 10px;
   transition: 0.2s ease-in-out;
+  background-color: rgb(57, 57, 57);
+  color: white;
+  border: none;
 }
 
 .filter-menu:hover {
   cursor: pointer;
-  background-color: rgb(91, 192, 250);
+  background-color: rgb(255, 255, 255);
+  color: black;
 }

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import MovieCardContainer from "./MovieCards/MovieCardContainer";
 import Navbar from "./Navbar/Navbar";
+import Footer from "./Footer/Footer";
 
 function App() {
   const [searchData, setSearchData] = useState("");
@@ -25,13 +26,6 @@ function App() {
   };
 
   const handleSort = (value) => {
-    if (value === "title") {
-      // console.log("This is the title option");
-    } else if (value === "release-date") {
-      // console.log("This is the release data option");
-    } else if (value === "vote-average") {
-      // console.log("This is the vote average option");
-    }
     setDropDown(value);
   };
 
@@ -47,6 +41,7 @@ function App() {
         clearData={clear}
         sortData={dropDown}
       />
+      <Footer />
     </>
   );
 }

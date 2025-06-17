@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import "./MovieCard.css";
 import axios from "axios";
+import Modal from "./Modal";
 
 export default function MovieCardContainer({
   searchData,
@@ -13,6 +14,8 @@ export default function MovieCardContainer({
   const [loading, setLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [currentSortOption, setCurrentSortOption] = useState("default-choice");
+  const [showModal, setShowModal] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState("");
 
   // console.log(searchData);
   //API KEY
@@ -54,7 +57,7 @@ export default function MovieCardContainer({
   }, [sortData]);
 
   //Renders the initial set of movie
-  const fetchList = async (page, sortOption) => {
+  const fetchList = async (page) => {
     //start loading
     setLoading(true);
     try {
@@ -65,7 +68,6 @@ export default function MovieCardContainer({
       if (page === 1) {
         setMovies(helperApplySort(data.results, currentSortOption));
       } else {
-        //COMBINES BUT DOES NOT SORT
         const combinedMovies = [...movies, ...data.results];
         const sortedMovies = helperApplySort(combinedMovies, currentSortOption);
         setMovies(sortedMovies);
@@ -124,6 +126,7 @@ export default function MovieCardContainer({
   };
 
   const helperApplySort = (nonSortedArray, dropDownStatus) => {
+    //create a copy of the non sorted array to later sort
     let sortedMovies = [...nonSortedArray];
 
     if (dropDownStatus === "title") {
@@ -135,32 +138,58 @@ export default function MovieCardContainer({
       );
     } else if (dropDownStatus === "vote-average") {
       sortedMovies.sort((a, b) => b.vote_average - a.vote_average);
+    } else if (dropDownStatus === "asdasd") {
+      // fetchList(1);
+      // return;
     }
 
     return sortedMovies;
   };
 
+  const handleOpenModal = (movieData) => {
+    setSelectedMovie(movieData);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
-      <div className="main-container">
-        {movies.map((e) => {
-          return (
-            <div key={e.id}>
-              <MovieCard
-                image={e.poster_path}
-                title={e.original_title}
-                average={e.vote_average}
-              />
-            </div>
-          );
-        })}
-      </div>
+      <main>
+        <div className="main-container">
+          {showModal && (
+            <Modal
+              title={selectedMovie.original_title}
+              image={selectedMovie.poster_path}
+              release_date={selectedMovie.release_date}
+              overview={selectedMovie.overview}
+              onClose={closeModal}
+              id={selectedMovie.id}
+            />
+          )}
+          {movies.map((movie) => {
+            return (
+              <div key={movie.id}>
+                <MovieCard
+                  image={movie.poster_path}
+                  title={movie.original_title}
+                  average={movie.vote_average}
+                  onCardClick={handleOpenModal} //This passed the whole data set through movieData
+                  movieData={movie}
+                />
+              </div>
+            );
+          })}
+        </div>
 
-      <div className="loadmore-container">
-        <button onClick={nextPage} className="loadmore-button">
-          Load More
-        </button>
-      </div>
+        <div className="loadmore-container">
+          <button onClick={nextPage} className="loadmore-button">
+            Load More
+          </button>
+        </div>
+      </main>
     </>
   );
 }
