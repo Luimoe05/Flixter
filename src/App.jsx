@@ -3,16 +3,21 @@ import { useState } from "react";
 import MovieCardContainer from "./MovieCards/MovieCardContainer";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
+import Animation from "./mainAnimation/Animation";
 
 function App() {
   const [searchData, setSearchData] = useState("");
   const [clear, setClear] = useState(false);
   const [dropDown, setDropDown] = useState("default-choice");
+  const [carousel, setCarousel] = useState(true);
 
   const handleSearchData = (data) => {
     console.log("handle search ran");
     setClear(false);
     setSearchData(data);
+
+    //IF SEARCH IS RAN
+    if (data !== "") setCarousel(false);
   };
 
   const handleClear = (data) => {
@@ -23,6 +28,8 @@ function App() {
     setTimeout(() => {
       setClear(false);
     }, 100);
+    //IF CLEAR IS RAN
+    setCarousel(true);
   };
 
   const handleSort = (value) => {
@@ -36,6 +43,9 @@ function App() {
         onDataClear={handleClear}
         onSort={handleSort}
       />
+
+      {carousel && <Animation />}
+
       <MovieCardContainer
         searchData={searchData}
         clearData={clear}

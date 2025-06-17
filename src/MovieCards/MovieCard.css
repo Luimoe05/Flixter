@@ -1,39 +1,54 @@
 /* MOVIE CARD STYLING */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .movie-card {
-  color: white;
+  color: rgb(0, 0, 0);
   display: flex;
   text-align: center;
   flex-direction: column;
-  background-color: rgb(37, 37, 37);
+  background-color: rgb(217, 217, 217);
   max-width: 350px;
   width: 350px;
   min-width: 200px;
   height: 45vh;
   border-radius: 5px;
   padding: 5px;
-  /* box-shadow: 0 0 16px rgba(0, 0, 0, 0.2); */
-  outline: 1px solid grey;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  outline: 1px solid rgb(167, 167, 167);
   transition: 0.2s ease-in-out;
 }
 
 .movie-card:hover {
   cursor: pointer;
   /* background-color: rgb(234, 234, 234); */
-  /* box-shadow: 0 0 16px rgba(0, 0, 0, 0.4); */
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.4);
   transform: translateY(-5px);
-  background-color: rgb(59, 59, 59);
+  background-color: rgb(198, 198, 198);
 }
 
 .movie-picture {
   width: 100%;
-  max-height: 80%;
+  max-height: 75%;
   border-radius: 5px;
   object-fit: cover;
 }
 
 .movie-average {
-  margin-top: 0px;
+  display: inline-block;
+  flex-direction: row;
+  width: fit-content;
+  margin: 0 auto;
+  background-color: rgb(203, 203, 79);
+  /* opacity: 60%; */
+  padding: 5px 30px 5px 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+  color: black;
 }
 
 .main-container {
@@ -81,6 +96,68 @@
 
 .loadmore-button:hover {
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  color: black;
+  background-color: rgb(108, 107, 107);
+  color: rgb(255, 255, 255);
+}
+.heart-notFilled,
+.heart-filled {
+  font-family: "Material Symbols Outlined";
+  font-size: 25px;
+  user-select: none;
+}
+
+.heart-filled {
+  color: red;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.watched,
+.not-watched {
+  font-family: "Material Symbols Outlined";
+  font-size: 25px;
+  user-select: none;
+}
+
+.watched {
+  color: rgb(110, 161, 176);
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.movie-card-logos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  /* background-color: rgb(59, 59, 59); */
+}
+
+/* MOVIE SCROLL ANIMATION */
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* THIS IS THE PARENT DIV */
+.movie-scroll-container {
+  user-select: none;
+  overflow: hidden;
+  padding: 30px 0;
+  /* background-color: white; */
+  white-space: nowrap;
+}
+
+.movie-scroll {
+  display: inline-block;
+  animation: 40s slide infinite linear;
+}
+
+.movie-scroll img {
+  height: 100px;
+  width: auto;
+  margin: 0 70px;
 }

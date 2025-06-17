@@ -1,0 +1,30 @@
+/* MOVIE SCROLL ANIMATION */
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* THIS IS THE PARENT DIV */
+.movie-scroll-container {
+  user-select: none;
+  overflow: hidden;
+  padding: 30px 0;
+  /* background-color: white; */
+  white-space: nowrap;
+}
+
+.movie-scroll {
+  display: inline-block;
+  animation: 40s slide infinite linear;
+}
+
+.movie-scroll img {
+  height: 100px;
+  width: auto;
+  margin: 0 70px;
+}

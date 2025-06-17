@@ -17,7 +17,7 @@ body {
   flex-wrap: wrap;
   /* TOP RIGHT BOTTOM LEFT*/
   padding: 35px 40px 35px 40px;
-  background-color: rgb(37, 37, 37);
+  background-color: rgb(233, 233, 233);
 
   /* STATIC NAVBAR */
   position: fixed;
@@ -31,7 +31,7 @@ body {
 
 .title-header {
   /* outline: 1px solid red; */
-  color: white;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -116,9 +116,7 @@ body {
 
 .clear-btn:hover {
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  color: black;
-  /* outline: 1px solid rgb(78, 78, 152); */
+  background-color: rgb(108, 108, 108);
 }
 
 .filter-menu {
@@ -134,6 +132,5 @@ body {
 
 .filter-menu:hover {
   cursor: pointer;
-  background-color: rgb(255, 255, 255);
-  color: black;
+  background-color: rgb(108, 108, 108);
 }
