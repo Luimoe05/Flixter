@@ -43,7 +43,7 @@
   flex-direction: row;
   width: fit-content;
   margin: 0 auto;
-  background-color: rgb(203, 203, 79);
+  background-color: rgb(198, 198, 72);
   /* opacity: 60%; */
   padding: 5px 30px 5px 30px;
   border-radius: 5px;
@@ -160,4 +160,7 @@
   height: 100px;
   width: auto;
   margin: 0 70px;
+}
+
+@media only screen and (max-widt: 768px) {
 }

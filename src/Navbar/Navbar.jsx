@@ -3,6 +3,7 @@ import "./Navbar.css";
 
 export default function Navbar({ onDataSend, onDataClear, onSort }) {
   const [search, setSearch] = useState("");
+  const [sortValue, setSortValue] = useState("default-choice");
   // const [clear, setClear] = useState(false);
 
   const handleSearch = () => {
@@ -13,6 +14,8 @@ export default function Navbar({ onDataSend, onDataClear, onSort }) {
     setSearch("");
     onDataSend("");
     onDataClear(true);
+    setSortValue("default-choice");
+    onSort("default-choice");
   };
 
   const handleEnterKey = (event) => {
@@ -24,6 +27,7 @@ export default function Navbar({ onDataSend, onDataClear, onSort }) {
 
   const handleSort = (e) => {
     const selectedTarget = e.target.value;
+    setSortValue(selectedTarget);
     onSort(selectedTarget);
   };
 
@@ -56,7 +60,11 @@ export default function Navbar({ onDataSend, onDataClear, onSort }) {
               Clear
             </button>
 
-            <select className="filter-menu" onChange={handleSort}>
+            <select
+              className="filter-menu"
+              onChange={handleSort}
+              value={sortValue}
+            >
               <option value="default-choice">Sort By</option>
               <option value="title">Title</option>
               <option value="release-date">Release Date</option>

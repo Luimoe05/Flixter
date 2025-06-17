@@ -4,6 +4,7 @@ import MovieCardContainer from "./MovieCards/MovieCardContainer";
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 import Animation from "./mainAnimation/Animation";
+import "./App.css";
 
 function App() {
   const [searchData, setSearchData] = useState("");
@@ -44,13 +45,14 @@ function App() {
         onSort={handleSort}
       />
 
-      {carousel && <Animation />}
-
-      <MovieCardContainer
-        searchData={searchData}
-        clearData={clear}
-        sortData={dropDown}
-      />
+      <div className="main-content-container">
+        {carousel && <Animation />}
+        <MovieCardContainer
+          searchData={searchData}
+          clearData={clear}
+          sortData={dropDown}
+        />
+      </div>
       <Footer />
     </>
   );
