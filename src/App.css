@@ -3,3 +3,8 @@
     margin-top: 200px;
   }
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
